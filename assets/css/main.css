@@ -1273,3 +1273,128 @@ section,
 .starter-section {
   /* Add your styles here */
 }
+
+/* blog section */
+/*--------------------------------------------------------------
+# Blog Section
+--------------------------------------------------------------*/
+.blog {
+  /* section-bg class from your original code likely sets this, adjust if needed */
+  background-color: #f8f9fa; /* Example light background */
+}
+
+.blog .section-title h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333; /* Darker color for title */
+  margin-bottom: 10px;
+}
+
+.blog .section-title p {
+  font-size: 16px;
+  color: #666; /* Lighter color for subtitle */
+  margin-bottom: 0;
+}
+
+.blog .entry {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden; /* Ensures content respects border-radius */
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  display: flex; /* Ensure card itself is a flex container */
+  flex-direction: column; /* Stack image and content vertically */
+}
+
+.blog .entry:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.blog .entry .entry-img {
+  max-height: 250px; /* Adjust as needed */
+  overflow: hidden;
+}
+
+.blog .entry .entry-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers the area without distortion */
+  transition: transform 0.3s ease;
+}
+
+.blog .entry:hover .entry-img img {
+  transform: scale(1.05); /* Slight zoom on hover */
+}
+
+/* Wrapper for text content to allow footer to stick to bottom */
+.blog .entry .entry-content-wrapper {
+  padding: 25px;
+  flex-grow: 1; /* Allows this wrapper to take available space */
+}
+
+.blog .entry .entry-title {
+  font-size: 20px; /* Slightly larger title */
+  font-weight: 600;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.blog .entry .entry-title a {
+  color: #2c3e50; /* A common dark blue/grey */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.blog .entry .entry-title a:hover {
+  color: #007bff; /* Your primary color */
+}
+
+.blog .entry .entry-content p {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.blog .entry .entry-footer {
+  /* This div is now used to push read-more to the bottom */
+  /* Padding is now in entry-content-wrapper */
+}
+
+.blog .entry .read-more-btn {
+  display: inline-block;
+  background-color: #007bff; /* Primary button color */
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 25px; /* Pill shape */
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.blog .entry .read-more-btn:hover {
+  background-color: #0056b3; /* Darker shade on hover */
+  transform: translateY(-2px);
+  color: #fff; /* Ensure text color remains white on hover */
+}
+
+.blog .entry .read-more-btn i {
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+/* Responsive adjustments if needed (Bootstrap columns usually handle this) */
+@media (max-width: 768px) {
+  .blog .entry .entry-title {
+    font-size: 18px;
+  }
+  .blog .entry .entry-content p {
+    font-size: 14px;
+  }
+  .blog .entry .read-more-btn {
+    padding: 7px 15px;
+    font-size: 13px;
+  }
+}
