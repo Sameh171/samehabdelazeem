@@ -1,6 +1,6 @@
 /**
-* Template Name: iPortfolio
-* Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
+* Template Name: Sameh Abd El Azeem
+* Template URL: https://bootstrapmade.com/Sameh Abd El Azeem-bootstrap-portfolio-websites-template/
 * Updated: Jun 29 2024 with Bootstrap v5.3.3
 * Author: BootstrapMade.com
 * License: https://bootstrapmade.com/license/
@@ -89,7 +89,7 @@ h6 {
 
 /* PHP Email Form Messages
 ------------------------------*/
-.php-email-form .error-message {
+.email-form .error-message {
   display: none;
   background: #df1529;
   color: #ffffff;
@@ -99,7 +99,7 @@ h6 {
   font-weight: 600;
 }
 
-.php-email-form .sent-message {
+.email-form .sent-message {
   display: none;
   color: #ffffff;
   background: #059652;
@@ -109,7 +109,7 @@ h6 {
   font-weight: 600;
 }
 
-.php-email-form .loading {
+.email-form .loading {
   display: none;
   background: var(--surface-color);
   text-align: center;
@@ -117,7 +117,7 @@ h6 {
   margin-bottom: 24px;
 }
 
-.php-email-form .loading:before {
+.email-form .loading:before {
   content: "";
   display: inline-block;
   border-radius: 50%;
@@ -126,10 +126,10 @@ h6 {
   margin: 0 10px -6px 0;
   border: 3px solid var(--accent-color);
   border-top-color: var(--surface-color);
-  animation: php-email-form-loading 1s linear infinite;
+  animation: email-form-loading 1s linear infinite;
 }
 
-@keyframes php-email-form-loading {
+@keyframes email-form-loading {
   0% {
     transform: rotate(0deg);
   }
@@ -1091,7 +1091,7 @@ section,
   color: var(--contrast-color);
 }
 
-.contact .php-email-form {
+.contact .email-form {
   background-color: var(--surface-color);
   height: 100%;
   padding: 30px;
@@ -1099,14 +1099,14 @@ section,
 }
 
 @media (max-width: 575px) {
-  .contact .php-email-form {
+  .contact .email-form {
     padding: 20px;
   }
 }
 
-.contact .php-email-form input[type=text],
-.contact .php-email-form input[type=email],
-.contact .php-email-form textarea {
+.contact .email-form input[type=text],
+.contact .email-form input[type=email],
+.contact .email-form textarea {
   font-size: 14px;
   padding: 10px 15px;
   box-shadow: none;
@@ -1116,19 +1116,19 @@ section,
   border-color: color-mix(in srgb, var(--default-color), transparent 80%);
 }
 
-.contact .php-email-form input[type=text]:focus,
-.contact .php-email-form input[type=email]:focus,
-.contact .php-email-form textarea:focus {
+.contact .email-form input[type=text]:focus,
+.contact .email-form input[type=email]:focus,
+.contact .email-form textarea:focus {
   border-color: var(--accent-color);
 }
 
-.contact .php-email-form input[type=text]::placeholder,
-.contact .php-email-form input[type=email]::placeholder,
-.contact .php-email-form textarea::placeholder {
+.contact .email-form input[type=text]::placeholder,
+.contact .email-form input[type=email]::placeholder,
+.contact .email-form textarea::placeholder {
   color: color-mix(in srgb, var(--default-color), transparent 70%);
 }
 
-.contact .php-email-form button[type=submit] {
+.contact .email-form button[type=submit] {
   color: var(--contrast-color);
   background: var(--accent-color);
   border: 0;
@@ -1137,7 +1137,7 @@ section,
   border-radius: 50px;
 }
 
-.contact .php-email-form button[type=submit]:hover {
+.contact .email-form button[type=submit]:hover {
   background: color-mix(in srgb, var(--accent-color), transparent 25%);
 }
 
@@ -1279,20 +1279,20 @@ section,
 # Blog Section
 --------------------------------------------------------------*/
 .blog {
-  /* section-bg class from your original code likely sets this, adjust if needed */
-  background-color: #f8f9fa; /* Example light background */
+  background-color: #f8f9fa;
+  padding: 60px 0; /* Add vertical padding for consistency */
 }
 
 .blog .section-title h2 {
-  font-size: 32px;
+  font-size: 26px; /* Match resume-title size */
   font-weight: 700;
-  color: #333; /* Darker color for title */
+  color: var(--heading-color); /* Use consistent theme color */
   margin-bottom: 10px;
 }
 
 .blog .section-title p {
   font-size: 16px;
-  color: #666; /* Lighter color for subtitle */
+  color: #666;
   margin-bottom: 0;
 }
 
@@ -1300,10 +1300,11 @@ section,
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  overflow: hidden; /* Ensures content respects border-radius */
+  overflow: hidden;
   transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-  display: flex; /* Ensure card itself is a flex container */
-  flex-direction: column; /* Stack image and content vertically */
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 30px; /* Add spacing between cards */
 }
 
 .blog .entry:hover {
@@ -1312,42 +1313,42 @@ section,
 }
 
 .blog .entry .entry-img {
-  max-height: 250px; /* Adjust as needed */
+  max-height: 220px;
   overflow: hidden;
 }
 
 .blog .entry .entry-img img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Ensures image covers the area without distortion */
+  object-fit: cover;
   transition: transform 0.3s ease;
 }
 
 .blog .entry:hover .entry-img img {
-  transform: scale(1.05); /* Slight zoom on hover */
+  transform: scale(1.05);
 }
 
-/* Wrapper for text content to allow footer to stick to bottom */
 .blog .entry .entry-content-wrapper {
-  padding: 25px;
-  flex-grow: 1; /* Allows this wrapper to take available space */
+  padding: 20px;
+  flex-grow: 1;
 }
 
 .blog .entry .entry-title {
-  font-size: 20px; /* Slightly larger title */
+  font-size: 18px; /* Match resume-item title */
   font-weight: 600;
-  margin-bottom: 15px;
   line-height: 1.3;
+  margin-bottom: 10px;
+  text-transform: uppercase; /* Match resume style */
 }
 
 .blog .entry .entry-title a {
-  color: #2c3e50; /* A common dark blue/grey */
+  color: var(--heading-color);
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
 .blog .entry .entry-title a:hover {
-  color: #007bff; /* Your primary color */
+  color: var(--accent-color);
 }
 
 .blog .entry .entry-content p {
@@ -1357,27 +1358,22 @@ section,
   margin-bottom: 20px;
 }
 
-.blog .entry .entry-footer {
-  /* This div is now used to push read-more to the bottom */
-  /* Padding is now in entry-content-wrapper */
-}
-
 .blog .entry .read-more-btn {
   display: inline-block;
-  background-color: #007bff; /* Primary button color */
+  background-color: var(--accent-color);
   color: #fff;
-  padding: 8px 20px;
-  border-radius: 25px; /* Pill shape */
+  padding: 8px 18px;
+  border-radius: 25px;
   text-decoration: none;
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .blog .entry .read-more-btn:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: #0056b3;
   transform: translateY(-2px);
-  color: #fff; /* Ensure text color remains white on hover */
+  color: #fff;
 }
 
 .blog .entry .read-more-btn i {
@@ -1385,16 +1381,135 @@ section,
   font-size: 12px;
 }
 
-/* Responsive adjustments if needed (Bootstrap columns usually handle this) */
 @media (max-width: 768px) {
   .blog .entry .entry-title {
-    font-size: 18px;
+    font-size: 16px;
   }
   .blog .entry .entry-content p {
     font-size: 14px;
   }
   .blog .entry .read-more-btn {
-    padding: 7px 15px;
-    font-size: 13px;
+    padding: 7px 14px;
+    font-size: 12px;
+  }
+}
+.blog-details-area {
+  padding: 60px 0;
+  background-color: #f8f9fa; /* Match blog background */
+  font-family: "Open Sans", sans-serif;
+}
+
+.blog-details-area .entry {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  padding: 30px;
+}
+
+.blog-details-area .entry-img {
+  max-height: 400px;
+  overflow: hidden;
+  border-radius: 8px;
+  margin-bottom: 25px;
+}
+
+.blog-details-area .entry-img img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+.blog-details-area .entry-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  line-height: 1.3;
+}
+
+.blog-details-area .entry-meta ul {
+  padding: 0;
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  font-size: 14px;
+  margin-bottom: 25px;
+  color: #888;
+}
+
+.blog-details-area .entry-meta ul li i {
+  margin-right: 6px;
+  color: var(--accent-color, #007bff);
+}
+
+.blog-details-area .entry-content h2 {
+  font-size: 22px;
+  color: var(--heading-color, #333);
+  font-weight: 600;
+  margin-top: 40px;
+  margin-bottom: 15px;
+}
+
+.blog-details-area .entry-content p,
+.blog-details-area .entry-content li {
+  font-size: 15px;
+  color: #444;
+  line-height: 1.8;
+}
+
+.blog-details-area .entry-content ul,
+.blog-details-area .entry-content ol {
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+.blog-details-area .entry-content table {
+  width: 100%;
+  margin: 20px 0;
+}
+
+.blog-details-area .entry-content blockquote {
+  padding: 15px 20px;
+  background-color: #f0f0f0;
+  border-left: 4px solid var(--accent-color, #007bff);
+  margin: 30px 0;
+  font-style: italic;
+  color: #333;
+}
+
+.blog-details-area .entry-content .btn {
+  padding: 10px 20px;
+  font-size: 15px;
+  border-radius: 25px;
+}
+
+.blog-details-area .entry-footer {
+  margin-top: 40px;
+  font-size: 14px;
+  color: #666;
+}
+
+.blog-details-area .entry-footer a {
+  color: var(--accent-color, #007bff);
+  text-decoration: none;
+}
+
+.blog-details-area .entry-footer a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+  .blog-details-area .entry-title {
+    font-size: 24px;
+  }
+
+  .blog-details-area .entry-content h2 {
+    font-size: 20px;
+  }
+
+  .blog-details-area .entry-meta ul {
+    flex-direction: column;
+    gap: 8px;
   }
 }
