@@ -29,7 +29,11 @@
     <meta name="twitter:card" content="summary_large_image" />
 
     <!-- Favicons -->
-    <link rel="icon" type="image/png" href="https://samehabdelazeem.com/assets/img/Logo2.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://samehabdelazeem.com/assets/img/Logo2.png"
+    />
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin />
@@ -56,7 +60,78 @@
 
     <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet" />
+    <style>
+      /* Sidebar with slim left border highlight */
+      .services-list .nav-link {
+        display: block;
+        padding: 12px 16px;
+        margin-bottom: 6px;
+        color: #444;
+        font-weight: 500;
+        border-left: 4px solid transparent;
+        background: transparent;
+        transition: all 0.3s ease;
+      }
 
+      .services-list .nav-link:hover {
+        color: #0d6efd;
+        background: #f8f9fa;
+        border-left-color: #0d6efd;
+      }
+
+      .services-list .nav-link.active {
+        color: #0d6efd;
+        font-weight: 600;
+        border-left-color: #0d6efd;
+        background: #eef4ff;
+      }
+
+      /* Content styling */
+      .services-img {
+        border-radius: 10px;
+        margin-bottom: 20px;
+        max-height: 250px;
+        object-fit: cover;
+      }
+
+      .service-details {
+        min-height: 80vh;
+      }
+      
+      .service-details h3 {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #222;
+      }
+
+      .service-details p {
+        color: #555;
+        line-height: 1.8;
+        margin-bottom: 20px;
+      }
+
+      .service-details ul {
+        list-style: none;
+        padding-left: 0;
+      }
+
+      .service-details ul li {
+        margin-bottom: 10px;
+        font-size: 15px;
+        color: #333;
+        position: relative;
+        padding-left: 28px;
+      }
+
+      .service-details ul li::before {
+        content: "✔";
+        color: #0d6efd;
+        position: absolute;
+        left: 0;
+        font-size: 16px;
+      }
+    </style>
     <!-- =======================================================
   * Template Name: Sameh Abd El Azeem
   * Template URL: https://bootstrapmade.com/Sameh Abd El Azeem-bootstrap-portfolio-websites-template/
@@ -177,77 +252,226 @@
       <section id="service-details" class="service-details section">
         <div class="container">
           <div class="row gy-4">
+            <!-- Sidebar (Nav Tabs) -->
             <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-              <div class="services-list">
-                <a href="#" class="active">Web Design</a>
-                <a href="#">Software Development</a>
-                <a href="#">Product Management</a>
-                <a href="#">Graphic Design</a>
-                <a href="#">Marketing</a>
+              <div
+                class="services-list nav flex-column nav-pills"
+                id="services-tab"
+                role="tablist"
+                aria-orientation="vertical"
+              >
+                <a
+                  class="nav-link active"
+                  id="digital-transformation-tap"
+                  data-bs-toggle="pill"
+                  href="#digital-transformation"
+                  role="tab"
+                  >Digital Transformation Consulting</a
+                >
+                <a
+                  class="nav-link"
+                  id="cloud-migration-tap"
+                  data-bs-toggle="pill"
+                  href="#cloud-migration"
+                  role="tab"
+                  >Cloud Migration (Huawei &amp; AWS)</a
+                >
+                <a
+                  class="nav-link"
+                  id="AI-tap"
+                  data-bs-toggle="pill"
+                  href="#AI"
+                  role="tab"
+                  >Custom AI Solutions</a
+                >
+                <a
+                  class="nav-link"
+                  id="staff-training-tap"
+                  data-bs-toggle="pill"
+                  href="#staff-training"
+                  role="tab"
+                  >Staff Training &amp; Certification</a
+                >
+                <a
+                  class="nav-link"
+                  id="data-security-tap"
+                  data-bs-toggle="pill"
+                  href="#data-security"
+                  role="tab"
+                  >Data Security &amp; Business Continuity</a
+                >
               </div>
-
-              <h4>Enim qui eos rerum in delectus</h4>
-              <p>
-                Nam voluptatem quasi numquam quas fugiat ex temporibus quo est.
-                Quia aut quam quod facere ut non occaecati ut aut. Nesciunt
-                mollitia illum tempore corrupti sed eum reiciendis. Maxime modi
-                rerum.
-              </p>
             </div>
 
-            <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
-              <img
-                src="assets/img/services.jpg"
-                alt=""
-                class="img-fluid services-img"
-              />
-              <h3>
-                Temporibus et in vero dicta aut eius lidero plastis trand lined
-                voluptas dolorem ut voluptas
-              </h3>
-              <p>
-                Blanditiis voluptate odit ex error ea sed officiis deserunt.
-                Cupiditate non consequatur et doloremque consequuntur.
-                Accusantium labore reprehenderit error temporibus saepe
-                perferendis fuga doloribus vero. Qui omnis quo sit. Dolorem
-                architecto eum et quos deleniti officia qui.
-              </p>
-              <ul>
-                <li>
-                  <i class="bi bi-check-circle"></i>
-                  <span>Aut eum totam accusantium voluptatem.</span>
-                </li>
-                <li>
-                  <i class="bi bi-check-circle"></i>
-                  <span
-                    >Assumenda et porro nisi nihil nesciunt voluptatibus.</span
-                  >
-                </li>
-                <li>
-                  <i class="bi bi-check-circle"></i>
-                  <span>Ullamco laboris nisi ut aliquip ex ea</span>
-                </li>
-              </ul>
-              <p>
-                Est reprehenderit voluptatem necessitatibus asperiores neque sed
-                ea illo. Deleniti quam sequi optio iste veniam repellat odit.
-                Aut pariatur itaque nesciunt fuga.
-              </p>
-              <p>
-                Sunt rem odit accusantium omnis perspiciatis officia. Laboriosam
-                aut consequuntur recusandae mollitia doloremque est architecto
-                cupiditate ullam. Quia est ut occaecati fuga. Distinctio ex
-                repellendus eveniet velit sint quia sapiente cumque. Et ipsa
-                perferendis ut nihil. Laboriosam vel voluptates tenetur nostrum.
-                Eaque iusto cupiditate et totam et quia dolorum in. Sunt
-                molestiae ipsum at consequatur vero. Architecto ut pariatur
-                autem ad non cumque nesciunt qui maxime. Sunt eum quia impedit
-                dolore alias explicabo ea.
-              </p>
+            <!-- Content (Tab Panes) -->
+            <div
+              class="col-lg-8 tab-content"
+              id="services-tabContent"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <!-- Digital Transformation -->
+              <div
+                class="tab-pane fade show active"
+                id="digital-transformation"
+                role="tabpanel"
+                aria-labelledby="digital-transformation-tap"
+              >
+                <img
+                  src="assets/img/services.jpg"
+                  alt="Digital Transformation"
+                  class="img-fluid services-img"
+                />
+                <h3>Transform your business with modern technology</h3>
+                <p>
+                  We help your business move from old systems to modern digital
+                  solutions.
+                </p>
+                <ul>
+                  <li>
+                    <i class="bi bi-check-circle"></i> Move from old systems to
+                    modern digital solutions.
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i> Save time and reduce
+                    costs across operations.
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i> Create a clear plan to
+                    grow with technology.
+                  </li>
+                </ul>
+                <p>Let’s plan your digital future together.</p>
+              </div>
+
+              <!-- Cloud Migration -->
+              <div
+                class="tab-pane fade"
+                id="cloud-migration"
+                role="tabpanel"
+                aria-labelledby="cloud-migration-tap"
+              >
+                <img
+                  src="assets/img/services.jpg"
+                  alt="Cloud Migration"
+                  class="img-fluid services-img"
+                />
+                <h3>Seamless and secure cloud migration</h3>
+                <p>We move your data and systems safely to the cloud.</p>
+                <ul>
+                  <li>
+                    <i class="bi bi-check-circle"></i> Fast and secure transfer
+                    of data and apps.
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i> No downtime for your
+                    business.
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i> Better performance and
+                    lower costs.
+                  </li>
+                </ul>
+                <p>Start your cloud journey today with Huawei or AWS.</p>
+              </div>
+
+              <!-- Custom AI Solutions -->
+              <div
+                class="tab-pane fade"
+                id="AI"
+                role="tabpanel"
+                aria-labelledby="AI-tap"
+              >
+                <img
+                  src="assets/img/services.jpg"
+                  alt="AI Solutions"
+                  class="img-fluid services-img"
+                />
+                <h3>Smarter decisions with AI-driven tools</h3>
+                <p>We design smart AI tools to fit your business needs.</p>
+                <ul>
+                  <li>
+                    <i class="bi bi-check-circle"></i> Automate repetitive daily
+                    tasks.
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i> Make better and faster
+                    decisions.
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i> Improve team productivity
+                    and efficiency.
+                  </li>
+                </ul>
+                <p>Boost your business with custom AI solutions.</p>
+              </div>
+
+              <!-- Staff Training -->
+              <div
+                class="tab-pane fade"
+                id="staff-training"
+                role="tabpanel"
+                aria-labelledby="staff-training-tap"
+              >
+                <img
+                  src="assets/img/services.jpg"
+                  alt="Staff Training"
+                  class="img-fluid services-img"
+                />
+                <h3>Empower your team with knowledge</h3>
+                <p>We train your team on the latest cloud and AI tools.</p>
+                <ul>
+                  <li>
+                    <i class="bi bi-check-circle"></i> Easy-to-follow training
+                    programs.
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i> Practical examples and
+                    hands-on learning.
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i> Certification preparation
+                    included.
+                  </li>
+                </ul>
+                <p>Upskill your team to stay ahead in technology.</p>
+              </div>
+
+              <!-- Data Security -->
+              <div
+                class="tab-pane fade"
+                id="data-security"
+                role="tabpanel"
+                aria-labelledby="data-security-tap"
+              >
+                <img
+                  src="assets/img/services.jpg"
+                  alt="Data Security"
+                  class="img-fluid services-img"
+                />
+                <h3>Keep your systems secure and resilient</h3>
+                <p>We make sure your systems and data are safe.</p>
+                <ul>
+                  <li>
+                    <i class="bi bi-check-circle"></i> Detect and fix security
+                    vulnerabilities.
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i> Protect sensitive data
+                    from cyber threats.
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i> Ensure business
+                    continuity during disruptions.
+                  </li>
+                </ul>
+                <p>Your security is our top priority.</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
+
       <!-- /Service Details Section -->
     </main>
 
@@ -260,7 +484,6 @@
             <span>All Rights Reserved</span>
           </p>
         </div>
-
       </div>
     </footer>
 
@@ -286,8 +509,21 @@
     <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-
+    <script src="assets/js/all.min.js"></script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+  // OR if you used hash (#service2)
+  const hash = window.location.hash;
+  if (hash) {
+    const triggerEl = document.querySelector(`[href="${hash}"]`);
+    if (triggerEl) {
+      const tab = new bootstrap.Tab(triggerEl);
+      tab.show();
+    }
+  }
+});
+    </script>
   </body>
 </html>
