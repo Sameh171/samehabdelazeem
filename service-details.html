@@ -97,7 +97,7 @@
       .service-details {
         min-height: 80vh;
       }
-      
+
       .service-details h3 {
         font-size: 1.6rem;
         font-weight: 700;
@@ -300,6 +300,14 @@
                   role="tab"
                   >Data Security &amp; Business Continuity</a
                 >
+                <a
+                  class="nav-link"
+                  id="soft-skills-tap"
+                  data-bs-toggle="pill"
+                  href="#soft-skills"
+                  role="tab"
+                  >Soft Skills Development
+                </a>
               </div>
             </div>
 
@@ -318,7 +326,7 @@
                 aria-labelledby="digital-transformation-tap"
               >
                 <img
-                  src="assets/img/services.jpg"
+                  src="assets/img/services/digital_transformation.jpg"
                   alt="Digital Transformation"
                   class="img-fluid services-img"
                 />
@@ -352,7 +360,7 @@
                 aria-labelledby="cloud-migration-tap"
               >
                 <img
-                  src="assets/img/services.jpg"
+                  src="assets/img/services/cloud_migration.jpg"
                   alt="Cloud Migration"
                   class="img-fluid services-img"
                 />
@@ -383,7 +391,7 @@
                 aria-labelledby="AI-tap"
               >
                 <img
-                  src="assets/img/services.jpg"
+                  src="assets/img/services/AI.jpg"
                   alt="AI Solutions"
                   class="img-fluid services-img"
                 />
@@ -414,7 +422,7 @@
                 aria-labelledby="staff-training-tap"
               >
                 <img
-                  src="assets/img/services.jpg"
+                  src="assets/img/services/training.jpg"
                   alt="Staff Training"
                   class="img-fluid services-img"
                 />
@@ -445,7 +453,7 @@
                 aria-labelledby="data-security-tap"
               >
                 <img
-                  src="assets/img/services.jpg"
+                  src="assets/img/services/data_security.jpg"
                   alt="Data Security"
                   class="img-fluid services-img"
                 />
@@ -466,6 +474,62 @@
                   </li>
                 </ul>
                 <p>Your security is our top priority.</p>
+              </div>
+
+              <!-- Soft Skills Development -->
+              <div
+                class="tab-pane fade"
+                id="soft-skills"
+                role="tabpanel"
+                aria-labelledby="soft-skills-tap"
+              >
+                <img
+                  src="assets/img/services/soft_skills.jpg"
+                  alt="Soft Skills Development"
+                  class="img-fluid services-img"
+                />
+                <h3>Soft Skills Development</h3>
+                <p>
+                  Mastering soft skills is essential for success in today’s
+                  competitive world. I help professionals and leaders build the
+                  confidence and communication skills they need to stand out and
+                  drive impact.
+                </p>
+
+                <h5>Key Focus Areas:</h5>
+                <ul>
+                  <li>
+                    <i class="bi bi-check-circle"></i>
+                    Public Speaking & Presentation Skills – Deliver powerful
+                    presentations, engage audiences, and communicate clearly.
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i>
+                    Business Development Skills – Build relationships, identify
+                    opportunities, and close deals effectively.
+                  </li>
+                  <li>
+                    <i class="bi bi-check-circle"></i>
+                    Leadership & Team Collaboration – Develop emotional
+                    intelligence and inspire your teams.
+                  </li>
+                </ul>
+
+                <h5>Who This Is For:</h5>
+                <p>
+                  • Professionals looking to advance their careers.<br />
+                  • Entrepreneurs aiming to pitch their ideas effectively.<br />
+                  • Leaders and managers seeking to improve team communication
+                  and collaboration.
+                </p>
+
+                <h5>Why It Matters:</h5>
+                <p>
+                  Technical skills may open doors, but soft skills keep you in
+                  the room. By mastering communication, emotional intelligence,
+                  and strategic thinking, you position yourself as a trusted
+                  leader and problem-solver in your industry.
+                </p>
               </div>
             </div>
           </div>
@@ -513,17 +577,17 @@
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
     <script>
-document.addEventListener("DOMContentLoaded", function () {
-  // OR if you used hash (#service2)
-  const hash = window.location.hash;
-  if (hash) {
-    const triggerEl = document.querySelector(`[href="${hash}"]`);
-    if (triggerEl) {
-      const tab = new bootstrap.Tab(triggerEl);
-      tab.show();
-    }
-  }
-});
+      document.addEventListener("DOMContentLoaded", function () {
+        // OR if you used hash (#service2)
+        const hash = window.location.hash;
+        if (hash) {
+          const triggerEl = document.querySelector(`[href="${hash}"]`);
+          if (triggerEl) {
+            const tab = new bootstrap.Tab(triggerEl);
+            tab.show();
+          }
+        }
+      });
     </script>
   </body>
 </html>
