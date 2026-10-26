@@ -98,11 +98,40 @@
     <!-- Styles -->
     <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
-    <link href="assets/css/main.css?v=2026-10-26" rel="stylesheet" />
+    <link href="assets/css/main.css?v=2026-10-27" rel="stylesheet" />
     <script>document.documentElement.classList.add("js");</script>
+    <script>
+      (function () {
+        var moved = {
+          "#digital-transformation": "digital-transformation.html",
+          "#services": "digital-transformation.html",
+          "#skills": "digital-transformation.html",
+          "#training": "training.html",
+          "#business-development": "business-development.html",
+          "#technology-sales": "technology-sales.html",
+          "#salestack": "technology-sales.html"
+        };
+        if (moved[location.hash]) location.replace(moved[location.hash]);
+      })();
+    </script>
   </head>
 
   <body>
+    <!-- Loader: first in <body> so it paints before anything else -->
+    <div class="loader" aria-hidden="true">
+      <div class="loader-inner">
+        <div class="loader-mark">
+          <svg viewBox="0 0 120 120">
+            <circle class="loader-track" cx="60" cy="60" r="54" />
+            <circle class="loader-ring" cx="60" cy="60" r="54" />
+          </svg>
+          <span>SA</span>
+        </div>
+        <p class="loader-name">Sameh Abdelazeem</p>
+        <p class="loader-tag">Technology · Business Growth · Training</p>
+        <div class="loader-bar"><span></span></div>
+      </div>
+    </div>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <!-- ======= Header ======= -->
@@ -122,11 +151,11 @@
 
         <nav id="site-nav" class="site-nav" aria-label="Main">
           <ul>
-            <li><a href="#hero">Home</a></li>
+            <li><a href="#hero" class="is-active" aria-current="page">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#training">Training</a></li>
-            <li><a href="#business-development">Business Development</a></li>
-            <li><a href="#technology-sales">Technology Sales</a></li>
+            <li><a href="training.html">Training</a></li>
+            <li><a href="business-development.html">Business Development</a></li>
+            <li><a href="technology-sales.html">Technology Sales</a></li>
             <li><a href="#insights">Insights</a></li>
             <li><a href="#contact" class="nav-cta">Contact</a></li>
           </ul>
@@ -141,17 +170,17 @@
         <div class="container">
           <div class="hero-grid">
             <div>
-              <p class="kicker">Technology · Business · People</p>
-              <h1 id="hero-title">
+              <p class="kicker" data-intro>Technology · Business · People</p>
+              <h1 id="hero-title" data-intro data-split>
                 Making Technology Create <span class="accent">Real Opportunities.</span>
               </h1>
-              <p class="hero-lead">
+              <p class="hero-lead" data-intro>
                 I'm <strong>Sameh Abdelazeem</strong> — a technology leader,
                 trainer, and business growth professional, passionate about
                 digital transformation, AI, and helping people and
                 organizations turn technology into real business value.
               </p>
-              <div class="hero-actions">
+              <div class="hero-actions" data-intro>
                 <a href="#about" class="button button--lime">
                   Get to know me <i class="bi bi-arrow-right" aria-hidden="true"></i>
                 </a>
@@ -159,7 +188,7 @@
                   Explore my ideas
                 </a>
               </div>
-              <figure class="hero-statement">
+              <figure class="hero-statement" data-intro>
                 <blockquote>
                   <p>
                     “Technology only creates value when people understand it,
@@ -170,7 +199,7 @@
               </figure>
             </div>
 
-            <figure class="hero-photo">
+            <figure class="hero-photo" data-intro>
               <img
                 src="assets/img/hero-portrait.jpg"
                 srcset="assets/img/hero-portrait-480.jpg 480w, assets/img/hero-portrait.jpg 880w"
@@ -199,7 +228,7 @@
                 Turning cloud, data and AI into changes that people actually
                 adopt — not just new systems on a roadmap.
               </p>
-              <a href="#digital-transformation" class="text-link">Explore <span class="visually-hidden">digital transformation</span> <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+              <a href="digital-transformation.html" class="text-link">Explore <span class="visually-hidden">digital transformation</span> <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
             </article>
             <article class="focus-card reveal">
               <span class="num">02</span>
@@ -209,7 +238,7 @@
                 Finding the right opportunities, partners and conversations —
                 and turning them into lasting business relationships.
               </p>
-              <a href="#business-development" class="text-link">Explore <span class="visually-hidden">business development</span> <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+              <a href="business-development.html" class="text-link">Explore <span class="visually-hidden">business development</span> <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
             </article>
             <article class="focus-card focus-card--featured reveal">
               <span class="num">03</span>
@@ -219,7 +248,7 @@
                 Selling IT on value: discovery, qualification, and explaining
                 technical solutions in the language of business.
               </p>
-              <a href="#technology-sales" class="text-link">Explore <span class="visually-hidden">technology sales</span> <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+              <a href="technology-sales.html" class="text-link">Explore <span class="visually-hidden">technology sales</span> <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
             </article>
             <article class="focus-card reveal">
               <span class="num">04</span>
@@ -229,17 +258,41 @@
                 Practical learning on technology, AI and professional skills,
                 built around real work and real careers.
               </p>
-              <a href="#training" class="text-link">Explore <span class="visually-hidden">training and development</span> <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
+              <a href="training.html" class="text-link">Explore <span class="visually-hidden">training and development</span> <i class="bi bi-arrow-right" aria-hidden="true"></i></a>
             </article>
           </div>
         </div>
       </section>
 
+      <!-- ======= Marquee ======= -->
+      <div class="marquee-wrap" aria-hidden="true">
+      <div class="marquee">
+        <div class="marquee-track">
+          <ul>
+            <li>Digital Transformation</li>
+            <li>Artificial Intelligence</li>
+            <li>Cloud &amp; Enterprise Technology</li>
+            <li>Business Development</li>
+            <li>Technology Sales</li>
+            <li>Training &amp; Development</li>
+          </ul>
+          <ul>
+            <li>Digital Transformation</li>
+            <li>Artificial Intelligence</li>
+            <li>Cloud &amp; Enterprise Technology</li>
+            <li>Business Development</li>
+            <li>Technology Sales</li>
+            <li>Training &amp; Development</li>
+          </ul>
+        </div>
+      </div>
+      </div>
+
       <!-- ======= About ======= -->
       <section id="about" class="section" data-nav="about" aria-labelledby="about-title">
         <div class="container">
           <div class="about-grid">
-            <div class="about-copy reveal">
+            <div class="about-copy reveal" data-reveal="left">
               <p class="kicker">About me</p>
               <h2 id="about-title">
                 Where technology, business and people meet
@@ -273,21 +326,21 @@
             </div>
 
             <div class="pillars">
-              <div class="pillar reveal">
+              <div class="pillar reveal" data-reveal="right">
                 <span class="icon-badge" aria-hidden="true"><i class="bi bi-cpu"></i></span>
                 <div>
                   <h3>Technology</h3>
                   <p>IT leadership, cloud and enterprise technology, and practical AI adoption — grounded in hands-on experience.</p>
                 </div>
               </div>
-              <div class="pillar reveal">
+              <div class="pillar reveal" data-reveal="right">
                 <span class="icon-badge" aria-hidden="true"><i class="bi bi-briefcase"></i></span>
                 <div>
                   <h3>Business</h3>
                   <p>Business development, partnerships and technology sales — connecting what technology does with what customers need.</p>
                 </div>
               </div>
-              <div class="pillar pillar--accent reveal">
+              <div class="pillar pillar--accent reveal" data-reveal="right">
                 <span class="icon-badge" aria-hidden="true"><i class="bi bi-people"></i></span>
                 <div>
                   <h3>People</h3>
@@ -297,378 +350,6 @@
             </div>
           </div>
 
-          <!-- Digital transformation & technology leadership -->
-          <div id="digital-transformation" class="expertise reveal">
-            <span id="services" aria-hidden="true"></span>
-            <span id="skills" aria-hidden="true"></span>
-            <div class="expertise-grid">
-              <div>
-                <p class="kicker">Technology leadership</p>
-                <h3 class="subhead">Digital transformation that people adopt</h3>
-                <p>
-                  In my experience, transformation rarely fails because of the
-                  technology. It fails when the people who use it don't see
-                  the point, when processes stay the same, or when nobody
-                  measures whether anything improved. I try to start with the
-                  business outcome, keep the technology as simple as the
-                  problem allows, and bring people along from the beginning.
-                </p>
-              </div>
-              <div>
-                <ul class="check-list check-list--2col">
-                  <li>IT strategy, governance and management</li>
-                  <li>Cloud architecture and migration (AWS, Azure, Huawei Cloud)</li>
-                  <li>Enterprise architecture and systems thinking</li>
-                  <li>IT service management (ITIL®)</li>
-                  <li>Practical AI adoption for business teams</li>
-                  <li>Project and agile delivery (PMP®, PMI-ACP®)</li>
-                  <li>Data security and business continuity</li>
-                  <li>Team leadership and coaching</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ======= Training ======= -->
-      <section id="training" class="section section--gray" data-nav="training" aria-labelledby="training-title">
-        <div class="container">
-          <div class="section-head reveal">
-            <p class="kicker">Training &amp; professional development</p>
-            <h2 id="training-title">Learning that works on <span class="highlight">Monday morning</span></h2>
-            <p class="lead">
-              Training is where my technology and business experience become
-              useful to other people. I care about learning that is practical,
-              honest about what technology can and can't do, and connected to
-              the work people actually do.
-            </p>
-          </div>
-
-          <div class="card-grid">
-            <article class="topic-card reveal">
-              <span class="icon-badge" aria-hidden="true"><i class="bi bi-arrow-repeat"></i></span>
-              <h3>Technology &amp; digital transformation</h3>
-              <p>What transformation really involves — strategy, process, people and technology — and how to plan it without disrupting daily work.</p>
-            </article>
-            <article class="topic-card reveal">
-              <span class="icon-badge" aria-hidden="true"><i class="bi bi-stars"></i></span>
-              <h3>AI for professionals</h3>
-              <p>Artificial intelligence explained for technical and non-technical audiences: what generative and agentic AI are, where they help, and how to use them responsibly.</p>
-            </article>
-            <article class="topic-card reveal">
-              <span class="icon-badge" aria-hidden="true"><i class="bi bi-cloud"></i></span>
-              <h3>Cloud &amp; enterprise technology</h3>
-              <p>Cloud concepts, platforms and migration thinking, plus the enterprise IT foundations — service management, governance, security — that make them work.</p>
-            </article>
-            <article class="topic-card reveal">
-              <span class="icon-badge" aria-hidden="true"><i class="bi bi-chat-square-text"></i></span>
-              <h3>Communication &amp; professional skills</h3>
-              <p>Presenting with confidence, explaining complex ideas simply, and the collaboration and leadership skills that keep you in the room.</p>
-            </article>
-            <article class="topic-card reveal">
-              <span class="icon-badge" aria-hidden="true"><i class="bi bi-signpost-split"></i></span>
-              <h3>Career-oriented learning</h3>
-              <p>Learning tied to where people want to go next — certification preparation, new roles in technology, or the move from technical work into business-facing work.</p>
-            </article>
-            <article class="topic-card reveal">
-              <span class="icon-badge" aria-hidden="true"><i class="bi bi-people"></i></span>
-              <h3>Workshops, mentoring &amp; knowledge sharing</h3>
-              <p>Interactive workshops, one-to-one mentoring and open knowledge sharing through talks, articles and conversations.</p>
-            </article>
-          </div>
-
-          <div class="approach reveal">
-            <div>
-              <p class="kicker">My approach</p>
-              <h3 class="subhead">How I like to teach</h3>
-              <p>
-                Good training should leave people able to do something they
-                couldn't do before — not just remember slides.
-              </p>
-            </div>
-            <ul class="principles">
-              <li>
-                <i class="bi bi-tools" aria-hidden="true"></i>
-                <strong>Practical first</strong>
-                <span>Real scenarios, real tools and exercises people can repeat at work.</span>
-              </li>
-              <li>
-                <i class="bi bi-translate" aria-hidden="true"></i>
-                <strong>Plain language</strong>
-                <span>Technical ideas explained so that non-specialists can use them with confidence.</span>
-              </li>
-              <li>
-                <i class="bi bi-link-45deg" aria-hidden="true"></i>
-                <strong>Connected to business</strong>
-                <span>Every topic tied back to a customer, a process or a decision.</span>
-              </li>
-              <li>
-                <i class="bi bi-person-check" aria-hidden="true"></i>
-                <strong>Built around people</strong>
-                <span>Room for questions, different starting points and different career goals.</span>
-              </li>
-            </ul>
-          </div>
-
-          <div class="audience reveal">
-            <ul class="tag-list" aria-label="Who this is for">
-              <li>Young professionals</li>
-              <li>Technical teams</li>
-              <li>Non-technical managers</li>
-              <li>Sales &amp; business development teams</li>
-              <li>Career changers</li>
-            </ul>
-            <a href="#contact" class="button button--navy" data-subject="Training enquiry">
-              Talk to me about training <i class="bi bi-arrow-right" aria-hidden="true"></i>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ======= Business development ======= -->
-      <section id="business-development" class="section" data-nav="business-development" aria-labelledby="bd-title">
-        <div class="container">
-          <div class="section-head reveal">
-            <p class="kicker">Business development</p>
-            <h2 id="bd-title">Growth starts with the right problem</h2>
-            <p class="lead">
-              To me, business development is the work of finding where a real
-              customer challenge meets a solution that genuinely fits — and
-              then building the relationships that let both sides grow. Having
-              worked on the technology side, I look at opportunities with a
-              practical question in mind: will this actually work for the
-              customer?
-            </p>
-          </div>
-
-          <div class="bd-grid">
-            <ol class="numbered">
-              <li class="reveal">
-                <h3>Business development strategy</h3>
-                <p>Deciding where to focus — which markets, segments and offers deserve time — instead of chasing every lead.</p>
-              </li>
-              <li class="reveal">
-                <h3>Market research &amp; opportunity identification</h3>
-                <p>Understanding industries, buyers and their pressures well enough to see opportunities before they become tenders.</p>
-              </li>
-              <li class="reveal">
-                <h3>Lead generation &amp; qualification</h3>
-                <p>Building a steady flow of conversations, then being honest about which ones have a real need, budget and timing.</p>
-              </li>
-              <li class="reveal">
-                <h3>Strategic partnerships &amp; ecosystems</h3>
-                <p>Working with vendors, distributors, integrators and complementary partners so customers get a complete solution.</p>
-              </li>
-              <li class="reveal">
-                <h3>Relationship development</h3>
-                <p>Growth that lasts comes from trust: following through, adding value between deals, and thinking long term.</p>
-              </li>
-              <li class="reveal">
-                <h3>From customer challenge to technology solution</h3>
-                <p>Translating a business problem into the right mix of technology — and knowing when the honest answer is “not yet”.</p>
-              </li>
-            </ol>
-
-            <aside class="question-card reveal" aria-labelledby="bd-questions">
-              <h3 id="bd-questions">Questions I ask before chasing an opportunity</h3>
-              <ol>
-                <li>Who owns the problem, and what is it costing them today?</li>
-                <li>Why would they act now rather than next year?</li>
-                <li>What does success look like in their words, not ours?</li>
-                <li>Which partners do we need to deliver it well?</li>
-                <li>Is this a relationship worth building beyond one deal?</li>
-              </ol>
-              <p>Simple questions — but answering them honestly saves months of effort.</p>
-            </aside>
-          </div>
-        </div>
-      </section>
-
-      <!-- ======= Technology sales ======= -->
-      <section id="technology-sales" class="section section--navy sales" data-nav="technology-sales" aria-labelledby="sales-title">
-        <div class="container">
-          <div class="section-head reveal">
-            <p class="kicker">Technology sales · IT sales</p>
-            <h2 id="sales-title">Sell the outcome, <span class="accent">not the specification</span></h2>
-            <p class="lead">
-              Technology sales is one of the most valuable — and most
-              misunderstood — skills in IT. The best technology salespeople
-              aren't the ones who know the most features; they're the ones who
-              understand the customer's business and can explain how a
-              solution changes it. These are the ideas I find myself sharing
-              most with young professionals, sales teams and IT companies.
-            </p>
-          </div>
-
-          <div class="compare reveal">
-            <div class="compare-col">
-              <h3><i class="bi bi-list-ul" aria-hidden="true"></i> Feature-based selling</h3>
-              <ul>
-                <li>Starts with the product and its datasheet</li>
-                <li>Talks about specifications, licences and speeds</li>
-                <li>Competes mainly on price</li>
-                <li>Ends the conversation when the demo ends</li>
-              </ul>
-              <blockquote>“Our firewall handles 10 Gbps of throughput.”</blockquote>
-            </div>
-            <div class="compare-col compare-col--value">
-              <h3><i class="bi bi-bullseye" aria-hidden="true"></i> Value-based selling</h3>
-              <ul>
-                <li>Starts with the customer's business and its risks</li>
-                <li>Talks about outcomes, costs avoided and time saved</li>
-                <li>Competes on fit, trust and results</li>
-                <li>Builds a relationship that continues after the deal</li>
-              </ul>
-              <blockquote>“Your branches stay online and protected during peak season — without adding staff.”</blockquote>
-            </div>
-          </div>
-
-          <div class="card-grid">
-            <article class="topic-card reveal">
-              <span class="icon-badge" aria-hidden="true"><i class="bi bi-compass"></i></span>
-              <h3>Technology sales fundamentals</h3>
-              <p>How IT buying really works: multiple stakeholders, technical and financial approvals, long cycles, and why trust matters more than pressure.</p>
-            </article>
-            <article class="topic-card reveal">
-              <span class="icon-badge" aria-hidden="true"><i class="bi bi-chat-dots"></i></span>
-              <h3>Discovery conversations</h3>
-              <p>Asking questions that uncover the real need — the business pain behind the technical request.</p>
-              <ul>
-                <li>What triggered this project now?</li>
-                <li>What happens if nothing changes?</li>
-                <li>Who else is affected, and who decides?</li>
-              </ul>
-            </article>
-            <article class="topic-card reveal">
-              <span class="icon-badge" aria-hidden="true"><i class="bi bi-funnel"></i></span>
-              <h3>Qualifying leads &amp; opportunities</h3>
-              <p>Separating interest from intent: need, budget, authority, timing, and whether you can genuinely win and deliver.</p>
-            </article>
-            <article class="topic-card reveal">
-              <span class="icon-badge" aria-hidden="true"><i class="bi bi-translate"></i></span>
-              <h3>Technical solutions in business language</h3>
-              <p>Turning architecture diagrams into stories a CFO or CEO cares about — risk, cost, growth, compliance and customer experience.</p>
-            </article>
-            <article class="topic-card reveal">
-              <span class="icon-badge" aria-hidden="true"><i class="bi bi-shield-check"></i></span>
-              <h3>Consultative selling &amp; objection handling</h3>
-              <p>Acting as an adviser rather than a vendor, and treating objections as information — usually about risk, budget or timing — rather than as rejection.</p>
-            </article>
-            <article class="topic-card reveal">
-              <span class="icon-badge" aria-hidden="true"><i class="bi bi-kanban"></i></span>
-              <h3>Managing the sales pipeline</h3>
-              <p>Keeping an honest pipeline from lead to qualified opportunity to closed deal: clear stages, next steps on every deal, and the discipline to drop the ones that won't close.</p>
-            </article>
-          </div>
-
-          <div class="solutions reveal">
-            <h3 class="subhead">Sales skills across IT solutions</h3>
-            <p class="solutions-intro">
-              Each technology area has its own buyers, language and concerns.
-              Knowing what each buyer really worries about is half of the
-              conversation.
-            </p>
-            <div class="solution-grid">
-              <div class="solution">
-                <h4><i class="bi bi-cloud" aria-hidden="true"></i> Cloud</h4>
-                <p>Cost predictability, migration risk, performance and the skills to run it afterwards.</p>
-              </div>
-              <div class="solution">
-                <h4><i class="bi bi-shield-lock" aria-hidden="true"></i> Cybersecurity</h4>
-                <p>Business risk, regulatory pressure and resilience — not just tools and threat lists.</p>
-              </div>
-              <div class="solution">
-                <h4><i class="bi bi-hdd-network" aria-hidden="true"></i> Infrastructure</h4>
-                <p>Uptime, lifecycle cost, scalability and how new systems fit what is already there.</p>
-              </div>
-              <div class="solution">
-                <h4><i class="bi bi-window-stack" aria-hidden="true"></i> Software &amp; SaaS</h4>
-                <p>User adoption, integration with existing systems and a clear return on the subscription.</p>
-              </div>
-              <div class="solution">
-                <h4><i class="bi bi-cpu" aria-hidden="true"></i> Data &amp; AI</h4>
-                <p>Realistic use cases, data readiness, governance and measurable results from pilots.</p>
-              </div>
-              <div class="solution">
-                <h4><i class="bi bi-gear-wide-connected" aria-hidden="true"></i> Managed services</h4>
-                <p>Service levels, accountability and freeing internal teams to focus on the business.</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="for-whom reveal">
-            <div>
-              <h3 class="subhead">Who this is for</h3>
-              <p>If you sell, or want to sell, technology — this is the thinking I want to share with you.</p>
-            </div>
-            <ul>
-              <li>
-                <strong>Young professionals</strong>
-                <span>Starting a career in technology and curious about the commercial side.</span>
-              </li>
-              <li>
-                <strong>Aspiring technology salespeople</strong>
-                <span>Including engineers and pre-sales specialists moving into sales.</span>
-              </li>
-              <li>
-                <strong>Business development teams</strong>
-                <span>Who need to qualify better and turn conversations into pipeline.</span>
-              </li>
-              <li>
-                <strong>IT companies</strong>
-                <span>Looking to build stronger, more consultative sales capabilities.</span>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
-
-      <!-- ======= SaleStack ======= -->
-      <section id="salestack" class="section section--gray" data-nav="technology-sales" aria-labelledby="salestack-title">
-        <div class="container">
-          <div class="salestack-head">
-            <div class="section-head reveal">
-              <p class="kicker">Learning initiative</p>
-              <h2 id="salestack-title"><span class="wordmark">Sale<span>Stack</span></span> — From Lead to Deal</h2>
-              <p class="lead">
-                SaleStack is my learning initiative for technology sales and
-                professional growth. It follows the real journey of a
-                technology deal — from understanding a prospect to progressing
-                toward a signed agreement — one practical skill at a time.
-              </p>
-            </div>
-            <span class="status-pill reveal"><span class="dot" aria-hidden="true"></span> More details coming soon</span>
-          </div>
-
-          <ol class="journey">
-            <li class="reveal">
-              <h3>Understand the prospect</h3>
-              <p>Research the organization, its industry and the people involved before the first conversation.</p>
-            </li>
-            <li class="reveal">
-              <h3>Qualify the opportunity</h3>
-              <p>Use discovery to confirm a real need, a decision process and a reason to act — or to walk away early.</p>
-            </li>
-            <li class="reveal">
-              <h3>Communicate value</h3>
-              <p>Connect the solution to outcomes the customer cares about, and handle objections with confidence.</p>
-            </li>
-            <li class="reveal">
-              <h3>Progress to the deal</h3>
-              <p>Manage proposals, stakeholders and next steps so that good opportunities keep moving toward a close.</p>
-            </li>
-          </ol>
-
-          <div class="journey-end reveal">
-            <p class="note">
-              <i class="bi bi-info-circle" aria-hidden="true"></i>
-              <span>SaleStack doesn't have a public page yet. If you'd like to hear about it as it develops, send me a message.</span>
-            </p>
-            <a href="#contact" class="button button--navy" data-subject="SaleStack – From Lead to Deal">
-              Ask about SaleStack <i class="bi bi-arrow-right" aria-hidden="true"></i>
-            </a>
-          </div>
         </div>
       </section>
 
@@ -768,7 +449,7 @@
                 <h2 id="contact-title">Let's talk</h2>
                 <p class="lead">
                   Whether it's about technology, business development,
-                  technology sales, training or SaleStack — I'm happy to hear
+                  technology sales or training — I'm happy to hear
                   from you.
                 </p>
               </div>
@@ -805,7 +486,7 @@
               </ul>
             </div>
 
-            <form id="contact-form" class="contact-form reveal">
+            <form id="contact-form" class="contact-form reveal" data-reveal="right">
               <h3>Send a message</h3>
               <p class="form-intro">You'll receive an email confirmation once your message is sent.</p>
               <div class="form-grid">
@@ -856,10 +537,10 @@
             <h2>Explore</h2>
             <ul>
               <li><a href="#about">About</a></li>
-              <li><a href="#training">Training</a></li>
-              <li><a href="#business-development">Business Development</a></li>
-              <li><a href="#technology-sales">Technology Sales</a></li>
-              <li><a href="#salestack">SaleStack</a></li>
+              <li><a href="digital-transformation.html">Digital Transformation</a></li>
+              <li><a href="training.html">Training</a></li>
+              <li><a href="business-development.html">Business Development</a></li>
+              <li><a href="technology-sales.html">Technology Sales</a></li>
               <li><a href="#insights">Insights</a></li>
               <li><a href="#contact">Contact</a></li>
             </ul>
@@ -883,6 +564,6 @@
 
     <a href="#top" class="to-top" aria-label="Back to top"><i class="bi bi-arrow-up-short" aria-hidden="true"></i></a>
 
-    <script src="assets/js/main.js?v=2026-10-26"></script>
+    <script src="assets/js/main.js?v=2026-10-27"></script>
   </body>
 </html>

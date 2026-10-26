@@ -1,23 +1,161 @@
 /**
- * samehabdelazeem.com – site behaviour (no dependencies).
+ * samehabdelazeem.com – site behaviour and motion (no dependencies).
  * Every block checks that its elements exist, so this file is safe on any page.
+ *
+ * Motion contract with main.css:
+ * - html.fx (added here) arms the hidden start states; without JS nothing hides.
+ * - html.is-loaded is set when the loader leaves; [data-intro] elements play then.
+ * - [data-split] headings are split into .w > span words here.
+ * - .reveal elements get .is-visible on scroll; data-reveal="left|right|zoom".
  */
 (function() {
   "use strict";
 
-  document.documentElement.classList.add('js');
+  const root = document.documentElement;
+  root.classList.add('js', 'fx');
 
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   const header = document.querySelector('.site-header');
   const nav = document.querySelector('#site-nav');
   const toggle = document.querySelector('.nav-toggle');
   const toTop = document.querySelector('.to-top');
 
   /**
-   * Header shadow once the page scrolls
+   * Split [data-split] headings into words (keeps nested spans like .accent)
+   */
+  document.querySelectorAll('[data-split]').forEach(el => {
+    let i = 0;
+    (function walk(node) {
+      [...node.childNodes].forEach(child => {
+        if (child.nodeType === Node.ELEMENT_NODE) return walk(child);
+        if (child.nodeType !== Node.TEXT_NODE || !child.textContent.trim()) return;
+        const frag = document.createDocumentFragment();
+        child.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) return frag.appendChild(document.createTextNode(' '));
+          const word = document.createElement('span');
+          const inner = document.createElement('span');
+          word.className = 'w';
+          inner.textContent = part;
+          inner.style.setProperty('--wi', i++);
+          word.appendChild(inner);
+          frag.appendChild(word);
+        });
+        child.replaceWith(frag);
+      });
+    })(el);
+  });
+
+  // Intro elements play in document order
+  document.querySelectorAll('[data-intro]').forEach((el, i) => {
+    el.style.setProperty('--d', `${150 + i * 110}ms`);
+  });
+
+  /**
+   * Loader: tracks image/font progress, stays a minimum time on the first
+   * page of a visit (shorter afterwards), then lifts like a curtain.
+   * A CSS failsafe in main.css removes it even if this never runs.
+   */
+  const loader = document.querySelector('.loader');
+  let firstVisit = true;
+  try {
+    firstVisit = !sessionStorage.getItem('sa-visited');
+    sessionStorage.setItem('sa-visited', '1');
+  } catch (e) { /* storage blocked: treat as first visit */ }
+
+  function revealPage() {
+    if (root.classList.contains('is-loaded')) return;
+    if (loader) {
+      loader.classList.add('is-done');
+      setTimeout(() => loader.remove(), 1200);
+    }
+    setTimeout(() => root.classList.add('is-loaded'), loader && !reduceMotion ? 350 : 0);
+  }
+
+  if (loader) {
+    const bar = loader.querySelector('.loader-bar span');
+    const images = [...document.images].filter(img => img.loading !== 'lazy');
+    const total = images.length + 1;
+    let done = 0;
+    const tick = () => {
+      done++;
+      if (bar) bar.style.transform = `scaleX(${Math.min(done / total, 1)})`;
+    };
+    images.forEach(img => {
+      if (img.complete) tick();
+      else {
+        img.addEventListener('load', tick, { once: true });
+        img.addEventListener('error', tick, { once: true });
+      }
+    });
+    (document.fonts ? document.fonts.ready : Promise.resolve()).then(tick, tick);
+
+    const minTime = reduceMotion ? 0 : (firstVisit ? 1200 : 450);
+    const started = performance.now();
+    const finish = () => {
+      if (bar) bar.style.transform = 'scaleX(1)';
+      setTimeout(revealPage, Math.max(0, minTime - (performance.now() - started)) + 200);
+    };
+    if (document.readyState === 'complete') finish();
+    else window.addEventListener('load', finish, { once: true });
+    setTimeout(revealPage, 5000);
+  } else {
+    revealPage();
+  }
+
+  // Coming back through the history cache: make sure nothing is left covering the page
+  window.addEventListener('pageshow', e => {
+    if (!e.persisted) return;
+    const wipe = document.querySelector('.page-wipe');
+    if (wipe) wipe.classList.remove('is-active');
+    revealPage();
+  });
+
+  /**
+   * Page transition for links to other pages of the site
+   */
+  if (!reduceMotion) {
+    const wipe = document.createElement('div');
+    wipe.className = 'page-wipe';
+    wipe.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(wipe);
+
+    document.addEventListener('click', e => {
+      const link = e.target.closest('a[href]');
+      if (!link || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      if (link.target === '_blank' || link.hasAttribute('download')) return;
+      const url = new URL(link.href, location.href);
+      if (url.origin !== location.origin) return;
+      if (url.pathname === location.pathname && url.search === location.search) return; // same-page anchor
+      e.preventDefault();
+      wipe.classList.add('is-active');
+      setTimeout(() => { location.href = url.href; }, 450);
+    });
+  }
+
+  /**
+   * Scroll progress bar
+   */
+  const progress = document.createElement('div');
+  progress.className = 'scroll-progress';
+  progress.setAttribute('aria-hidden', 'true');
+  document.body.appendChild(progress);
+
+  const heroImg = document.querySelector('.hero-photo img');
+
+  /**
+   * Header shadow, back-to-top, progress and hero parallax on scroll
    */
   function onScroll() {
-    if (header) header.classList.toggle('is-scrolled', window.scrollY > 10);
-    if (toTop) toTop.classList.toggle('is-visible', window.scrollY > 600);
+    const y = window.scrollY;
+    if (header) header.classList.toggle('is-scrolled', y > 10);
+    if (toTop) toTop.classList.toggle('is-visible', y > 600);
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.transform = `scaleX(${max > 0 ? y / max : 0})`;
+    if (heroImg && !reduceMotion && y < window.innerHeight * 1.2) {
+      heroImg.style.transform = `translateY(${y * 0.08}px) scale(${1 + y * 0.0002})`;
+    }
   }
 
   /**
@@ -96,32 +234,104 @@
     });
   }, { passive: true });
   window.addEventListener('load', spy);
+  window.addEventListener('resize', onScroll);
   onScroll();
   spy();
 
   /**
-   * Reveal on scroll (fires once). Without IntersectionObserver everything
-   * simply stays visible.
+   * Count-up numbers (e.g. "1,500+") when they scroll into view
    */
-  const revealEls = document.querySelectorAll('.reveal');
+  function countUp(el) {
+    const text = el.textContent;
+    const match = text.match(/[\d,]+/);
+    if (!match || reduceMotion) return;
+    const target = parseInt(match[0].replace(/,/g, ''), 10);
+    const useComma = match[0].includes(',');
+    const duration = 1600;
+    const start = performance.now();
+    (function frame(now) {
+      const t = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const value = Math.round(target * eased);
+      el.textContent = text.replace(match[0], useComma ? value.toLocaleString('en-US') : String(value));
+      if (t < 1) requestAnimationFrame(frame);
+    })(start);
+  }
+
+  /**
+   * Reveal on scroll (fires once). Siblings are staggered. Without
+   * IntersectionObserver everything simply stays visible.
+   */
+  const revealEls = [...document.querySelectorAll('.reveal')];
+  revealEls.forEach(el => {
+    const siblings = [...el.parentElement.children].filter(c => c.classList.contains('reveal'));
+    const index = siblings.indexOf(el);
+    if (index > 0) el.style.setProperty('--d', `${Math.min(index, 6) * 90}ms`);
+  });
+
+  function onSeen(el) {
+    el.classList.add('is-visible');
+    el.querySelectorAll('.facts strong').forEach(countUp);
+  }
+
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
-        entry.target.classList.add('is-visible');
+        onSeen(entry.target);
         observer.unobserve(entry.target);
       });
     }, { rootMargin: '0px 0px -8% 0px' });
     revealEls.forEach(el => observer.observe(el));
   } else {
-    revealEls.forEach(el => el.classList.add('is-visible'));
+    revealEls.forEach(onSeen);
   }
 
   /**
-   * Links with data-subject="..." prefill the contact form subject
+   * Pointer effects: card spotlight + tilt, magnetic buttons
+   */
+  if (finePointer && !reduceMotion) {
+    document.querySelectorAll('.focus-card, .topic-card, .insight, .pillar, .steps li, .question-card').forEach(card => {
+      card.classList.add('fx-spot');
+      card.addEventListener('pointermove', e => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+        card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+      });
+    });
+
+    document.querySelectorAll('.focus-card, .insight, .topic-card').forEach(card => {
+      card.classList.add('fx-tilt');
+      card.addEventListener('pointermove', e => {
+        if (!card.classList.contains('is-visible') && card.classList.contains('reveal')) return;
+        const rect = card.getBoundingClientRect();
+        const rx = -((e.clientY - rect.top) / rect.height - 0.5) * 6;
+        const ry = ((e.clientX - rect.left) / rect.width - 0.5) * 6;
+        card.style.transform = `perspective(900px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-4px)`;
+      });
+      card.addEventListener('pointerleave', () => { card.style.transform = ''; });
+    });
+
+    document.querySelectorAll('.button, .nav-cta, .to-top').forEach(btn => {
+      btn.classList.add('fx-magnet');
+      btn.addEventListener('pointermove', e => {
+        const rect = btn.getBoundingClientRect();
+        const x = (e.clientX - rect.left - rect.width / 2) * 0.18;
+        const y = (e.clientY - rect.top - rect.height / 2) * 0.25;
+        btn.style.transform = `translate(${x}px, ${y}px)`;
+      });
+      btn.addEventListener('pointerleave', () => { btn.style.transform = ''; });
+    });
+  }
+
+  /**
+   * Contact subject: links with data-subject="..." on this page, or
+   * ?subject=... from another page, prefill the form
    */
   const subjectField = document.querySelector('#subject-field');
   if (subjectField) {
+    const fromQuery = new URLSearchParams(location.search).get('subject');
+    if (fromQuery) subjectField.value = fromQuery.slice(0, 120);
     document.querySelectorAll('a[data-subject]').forEach(link => {
       link.addEventListener('click', () => {
         if (!subjectField.value) subjectField.value = link.dataset.subject;

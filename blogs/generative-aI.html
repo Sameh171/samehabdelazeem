@@ -71,11 +71,26 @@
     <!-- Styles -->
     <link href="../assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <link href="../assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" />
-    <link href="../assets/css/main.css?v=2026-10-26" rel="stylesheet" />
+    <link href="../assets/css/main.css?v=2026-10-27" rel="stylesheet" />
     <script>document.documentElement.classList.add("js");</script>
   </head>
 
   <body>
+    <!-- Loader: first in <body> so it paints before anything else -->
+    <div class="loader" aria-hidden="true">
+      <div class="loader-inner">
+        <div class="loader-mark">
+          <svg viewBox="0 0 120 120">
+            <circle class="loader-track" cx="60" cy="60" r="54" />
+            <circle class="loader-ring" cx="60" cy="60" r="54" />
+          </svg>
+          <span>SA</span>
+        </div>
+        <p class="loader-name">Sameh Abdelazeem</p>
+        <p class="loader-tag">Technology · Business Growth · Training</p>
+        <div class="loader-bar"><span></span></div>
+      </div>
+    </div>
     <a class="skip-link" href="#main">Skip to content</a>
 
     <!-- ======= Header ======= -->
@@ -97,9 +112,9 @@
           <ul>
             <li><a href="../index.html">Home</a></li>
             <li><a href="../index.html#about">About</a></li>
-            <li><a href="../index.html#training">Training</a></li>
-            <li><a href="../index.html#business-development">Business Development</a></li>
-            <li><a href="../index.html#technology-sales">Technology Sales</a></li>
+            <li><a href="../training.html">Training</a></li>
+            <li><a href="../business-development.html">Business Development</a></li>
+            <li><a href="../technology-sales.html">Technology Sales</a></li>
             <li><a href="../index.html#insights" class="is-active" aria-current="page">Insights</a></li>
             <li><a href="../index.html#contact" class="nav-cta">Contact</a></li>
           </ul>
@@ -367,10 +382,10 @@
             <h2>Explore</h2>
             <ul>
               <li><a href="../index.html#about">About</a></li>
-              <li><a href="../index.html#training">Training</a></li>
-              <li><a href="../index.html#business-development">Business Development</a></li>
-              <li><a href="../index.html#technology-sales">Technology Sales</a></li>
-              <li><a href="../index.html#salestack">SaleStack</a></li>
+              <li><a href="../digital-transformation.html">Digital Transformation</a></li>
+              <li><a href="../training.html">Training</a></li>
+              <li><a href="../business-development.html">Business Development</a></li>
+              <li><a href="../technology-sales.html">Technology Sales</a></li>
               <li><a href="../index.html#insights">Insights</a></li>
               <li><a href="../index.html#contact">Contact</a></li>
             </ul>
@@ -394,6 +409,6 @@
 
     <a href="#top" class="to-top" aria-label="Back to top"><i class="bi bi-arrow-up-short" aria-hidden="true"></i></a>
 
-    <script src="../assets/js/main.js?v=2026-10-26"></script>
+    <script src="../assets/js/main.js?v=2026-10-27"></script>
   </body>
 </html>

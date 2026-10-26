@@ -18,19 +18,28 @@ Then open http://localhost:8000/.
 
 ## Structure
 
-- `index.html` — the single-page homepage. Sections, in order: `#hero`, focus-area cards, `#about` (contains `#digital-transformation`), `#training`, `#business-development`, `#technology-sales`, `#salestack`, `#insights`, `#contact`. Hidden legacy anchors `#blog`, `#services`, `#skills` keep old links working. Each section has `data-nav="<nav target id>"`, which `main.js` uses for scrollspy (e.g. `#salestack` highlights "Technology Sales").
-- `blogs/*.html` — article pages, one directory down, so asset/nav paths use `../` (never prefix absolute URLs). Each carries its own SEO block (title, description, canonical, Open Graph, Twitter card, `BlogPosting` JSON-LD). New posts must also be added as a card in `#insights` in `index.html`. They share the homepage header/footer markup — keep them in sync when the nav changes.
-- `service-details.html` — legacy URL only: a `noindex` redirect that maps old `#hash` tabs to homepage sections.
+- `index.html` — homepage: `#hero`, focus-area cards, marquee band, `#about`, `#insights`, `#contact`. Each section has `data-nav="<nav target id>"`, which `main.js` uses for scrollspy. A small inline script in `<head>` forwards old anchors (`#training`, `#business-development`, `#technology-sales`, `#digital-transformation`, `#salestack`, `#services`, `#skills`) to the topic pages.
+- Topic pages at the root: `digital-transformation.html`, `training.html`, `business-development.html`, `technology-sales.html`. The focus cards and the main nav link to them. Each has a `.page-hero`, its content sections, an "Other areas" block (`.explore`) and a `.cta-band` linking to `index.html?subject=...#contact`.
+- `blogs/*.html` — article pages, one directory down, so asset/nav paths use `../` (never prefix absolute URLs). Each carries its own SEO block (title, description, canonical, Open Graph, Twitter card, `BlogPosting` JSON-LD). New posts must also be added as a card in `#insights` in `index.html`.
+- Every page repeats the same loader, header and footer markup — keep them in sync when the nav changes. The loader must stay the first element in `<body>` so it paints before anything else.
+- `service-details.html` — legacy URL only: a `noindex` redirect that maps old `#hash` tabs to the topic pages.
 - `assets/css/main.css` — all styling. Colours/fonts are tokens on `:root` (`--navy-*`, `--lime`, `--lime-ink` for lime-family text on white, `--font-heading` Sora, `--font-body` Inter). Section variants: `.section--gray`, `.section--navy`.
-- `assets/js/main.js` — header/mobile nav, scrollspy, reveal-on-scroll (`.reveal` → `.is-visible`, skipped under reduced motion), back-to-top, `a[data-subject]` contact-subject prefill, footer year, and the contact form.
+- `assets/js/main.js` — loader, page transitions, header/mobile nav, scrollspy, scroll progress, reveal-on-scroll, count-up numbers, card spotlight/tilt, magnetic buttons, back-to-top, contact-subject prefill (`a[data-subject]` or `?subject=`), footer year, and the contact form.
 - `assets/img/` — `hero-portrait*.jpg` (real photo of Sameh, 4:5 crops), `og-image.jpg` (1200×630 social card), `blogs/*.jpg` (article illustrations), `Logo2.png` (favicon/email logo).
 - Only files that some page references are kept. Don't add vendor libraries, build variants or placeholder images that nothing loads.
 - Icons are Bootstrap Icons (`bi bi-*`) only.
 
+## Motion
+
+- `main.js` adds `html.fx`; every hidden start state in `main.css` is scoped to `.fx`, so if JS fails the page is simply static. The loader also has a CSS failsafe that hides it after 6s.
+- `html.is-loaded` is set when the loader lifts; `[data-intro]` elements then play in document order, and `[data-split]` headings are split into words (`.w > span`).
+- `.reveal` elements animate in on scroll (`data-reveal="left|right|zoom"` for direction); siblings are staggered automatically.
+- All motion is disabled under `prefers-reduced-motion`.
+
 ## Content rules
 
 - Personal brand, independent of any employer: no employer names, logos, addresses, emails, client testimonials or company case studies.
-- Don't invent statistics, testimonials, courses, prices, dates or outcomes. SaleStack has no public page yet — don't link to one until it exists.
+- Don't invent statistics, testimonials, courses, prices, dates or outcomes. The SaleStack section was removed at the owner's request; don't reintroduce it unless asked.
 
 ## Contact form
 
