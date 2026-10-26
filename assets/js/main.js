@@ -49,7 +49,8 @@
    * Preloader
    */
   const preloader = document.querySelector('#preloader');
-  if (preloader) {
+  // The animated .fx-loader variant is handled by effects.js
+  if (preloader && !preloader.classList.contains('fx-loader')) {
     window.addEventListener('load', () => {
       preloader.remove();
     });

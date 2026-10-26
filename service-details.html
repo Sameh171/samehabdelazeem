@@ -60,6 +60,7 @@
 
     <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet" />
+    <link href="assets/css/effects.css" rel="stylesheet" />
     <style>
       /* Sidebar with slim left border highlight */
       .services-list .nav-link {
@@ -142,12 +143,34 @@
   </head>
 
   <body class="service-details-page">
+    <!-- Preloader -->
+    <div id="preloader" class="fx-loader" role="status" aria-busy="true" aria-label="Loading">
+      <div class="fx-loader-panel fx-loader-panel--top"></div>
+      <div class="fx-loader-panel fx-loader-panel--bottom"></div>
+      <div class="fx-loader-core">
+        <div class="fx-loader-mark">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="fx-loader-ring fx-loader-ring--track" cx="60" cy="60" r="56" />
+            <circle class="fx-loader-ring fx-loader-ring--outer" cx="60" cy="60" r="56" />
+            <circle class="fx-loader-ring fx-loader-ring--dots" cx="60" cy="60" r="51" />
+            <circle class="fx-loader-ring fx-loader-ring--inner" cx="60" cy="60" r="46" />
+          </svg>
+          <span class="fx-loader-initials">SA</span>
+        </div>
+        <div class="fx-loader-name">Sameh Abd El Azeem</div>
+        <div class="fx-loader-bar"><span></span></div>
+        <div class="fx-loader-pct"><span>0</span>%</div>
+      </div>
+    </div>
+
     <header id="header" class="header dark-background d-flex flex-column">
       <i class="header-toggle d-xl-none bi bi-list"></i>
 
       <div class="profile-img">
         <img
-          src="../assets/img/hero-bg.jpg"
+          src="assets/img/hero-avatar.jpg"
+          width="240"
+          height="240"
           alt=""
           class="img-fluid rounded-circle"
         />
@@ -214,7 +237,7 @@
           </li>
           <li>
             <a href="../index.html#blog"
-              ><i class="fa-solid fa-blog navicon"></i> Blog</a
+              ><i class="bi bi-journal-text navicon"></i> Blog</a
             >
           </li>
           <li>
@@ -329,6 +352,8 @@
                   src="assets/img/services/digital_transformation.jpg"
                   alt="Digital Transformation"
                   class="img-fluid services-img"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <h3>Transform your business with modern technology</h3>
                 <p>
@@ -363,6 +388,8 @@
                   src="assets/img/services/cloud_migration.jpg"
                   alt="Cloud Migration"
                   class="img-fluid services-img"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <h3>Seamless and secure cloud migration</h3>
                 <p>We move your data and systems safely to the cloud.</p>
@@ -394,6 +421,8 @@
                   src="assets/img/services/AI.jpg"
                   alt="AI Solutions"
                   class="img-fluid services-img"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <h3>Smarter decisions with AI-driven tools</h3>
                 <p>We design smart AI tools to fit your business needs.</p>
@@ -425,6 +454,8 @@
                   src="assets/img/services/training.jpg"
                   alt="Staff Training"
                   class="img-fluid services-img"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <h3>Empower your team with knowledge</h3>
                 <p>We train your team on the latest cloud and AI tools.</p>
@@ -456,6 +487,8 @@
                   src="assets/img/services/data_security.jpg"
                   alt="Data Security"
                   class="img-fluid services-img"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <h3>Keep your systems secure and resilient</h3>
                 <p>We make sure your systems and data are safe.</p>
@@ -487,6 +520,8 @@
                   src="assets/img/services/soft_skills.jpg"
                   alt="Soft Skills Development"
                   class="img-fluid services-img"
+                  loading="lazy"
+                  decoding="async"
                 />
                 <h3>Soft Skills Development</h3>
                 <p>
@@ -559,8 +594,6 @@
       ><i class="bi bi-arrow-up-short"></i
     ></a>
 
-    <!-- Preloader -->
-    <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -573,9 +606,9 @@
     <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/js/all.min.js"></script>
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/effects.js"></script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         // OR if you used hash (#service2)

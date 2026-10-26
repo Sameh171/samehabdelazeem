@@ -1,0 +1,680 @@
+/*--------------------------------------------------------------
+# Effects layer
+# Motion and interactive effects on top of main.css.
+# Paired with assets/js/effects.js, which adds the classes used here.
+--------------------------------------------------------------*/
+:root {
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --fx-violet: #7c5cff; /* Secondary glow color paired with --accent-color in gradients */
+  --fx-teal: #00e5c7; /* Third stop of the scroll progress gradient */
+}
+
+/*--------------------------------------------------------------
+# Preloader (#preloader.fx-loader, driven by effects.js)
+--------------------------------------------------------------*/
+#preloader.fx-loader {
+  background: none;
+  transition: none;
+  pointer-events: auto;
+  /* Failsafe: hides itself even if JS never runs (keep above MAX_MS in effects.js) */
+  animation: fx-loader-failsafe 500ms ease 6s forwards;
+}
+
+#preloader.fx-loader:before {
+  content: none;
+}
+
+@keyframes fx-loader-failsafe {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.fx-loader-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50.5%;
+  background: var(--nav-mobile-background-color, #040b14);
+  transition: transform 900ms var(--ease-in-out);
+}
+
+.fx-loader-panel--top {
+  top: 0;
+}
+
+.fx-loader-panel--bottom {
+  bottom: 0;
+}
+
+/* Thin accent seam where the curtain splits */
+.fx-loader-panel--bottom::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+  opacity: 0;
+  transition: opacity 300ms ease;
+}
+
+.fx-loader.is-done .fx-loader-panel--bottom::before {
+  opacity: 1;
+}
+
+.fx-loader-core {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  color: #fff;
+  animation: fx-loader-in 700ms var(--ease-out) both;
+  transition:
+    opacity 300ms var(--ease-out),
+    transform 400ms var(--ease-out);
+}
+
+@keyframes fx-loader-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+}
+
+.fx-loader-mark {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  display: grid;
+  place-items: center;
+}
+
+.fx-loader-mark svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.fx-loader-ring {
+  fill: none;
+  stroke-linecap: round;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.fx-loader-ring--track {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 2;
+}
+
+.fx-loader-ring--outer {
+  stroke: var(--accent-color);
+  stroke-width: 3;
+  stroke-dasharray: 90 262;
+  filter: drop-shadow(0 0 6px var(--accent-color));
+  animation: fx-spin 1400ms linear infinite;
+}
+
+.fx-loader-ring--inner {
+  stroke: var(--fx-violet);
+  stroke-width: 2;
+  stroke-dasharray: 40 249;
+  animation: fx-spin 2000ms linear infinite reverse;
+}
+
+.fx-loader-ring--dots {
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 2;
+  stroke-dasharray: 0 12;
+  animation: fx-spin 8000ms linear infinite;
+}
+
+@keyframes fx-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fx-loader-initials {
+  font-family: var(--heading-font);
+  font-weight: 700;
+  font-size: 34px;
+  letter-spacing: 2px;
+  background: linear-gradient(120deg, #fff 30%, var(--accent-color) 50%, #fff 70%) 0 0 / 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: fx-initials 2400ms linear infinite;
+}
+
+@keyframes fx-initials {
+  from {
+    background-position: 100% 0;
+  }
+  to {
+    background-position: -50% 0;
+  }
+}
+
+.fx-loader-name {
+  font-family: var(--nav-font);
+  font-size: 13px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.fx-loader-bar {
+  width: 180px;
+  height: 2px;
+  border-radius: 2px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.fx-loader-bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-color), var(--fx-violet));
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+.fx-loader-pct {
+  font-family: var(--nav-font);
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Exit: content shrinks away, then the curtain splits open */
+.fx-loader.is-done {
+  pointer-events: none;
+}
+
+.fx-loader.is-done .fx-loader-core {
+  opacity: 0;
+  transform: scale(0.94);
+}
+
+.fx-loader.is-done .fx-loader-panel {
+  transition-delay: 200ms;
+}
+
+.fx-loader.is-done .fx-loader-panel--top {
+  transform: translateY(-100%);
+}
+
+.fx-loader.is-done .fx-loader-panel--bottom {
+  transform: translateY(100%);
+}
+
+/*--------------------------------------------------------------
+# Scroll progress bar
+--------------------------------------------------------------*/
+.fx-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 10000;
+  pointer-events: none;
+  background: linear-gradient(90deg, var(--accent-color), var(--fx-violet), var(--fx-teal));
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+
+/*--------------------------------------------------------------
+# Hero
+--------------------------------------------------------------*/
+.hero {
+  overflow: hidden;
+}
+
+/* Slow Ken Burns drift on the background photo */
+.fx-ready .hero > img {
+  animation: fx-kenburns 24s linear infinite alternate;
+}
+
+@keyframes fx-kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1) translate3d(-1.5%, -1%, 0);
+  }
+}
+
+/* Network canvas sits between the photo overlay and the text (FX.network in effects.js) */
+.fx-hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 1200ms var(--ease-out);
+}
+
+.fx-hero-canvas.is-on {
+  opacity: 1;
+}
+
+/* Soft drifting aurora glow */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    radial-gradient(40% 35% at 30% 40%, color-mix(in srgb, var(--accent-color), transparent 70%), transparent 70%),
+    radial-gradient(35% 30% at 70% 65%, color-mix(in srgb, var(--fx-violet), transparent 72%), transparent 70%);
+  mix-blend-mode: screen;
+  animation: fx-aurora 18s ease-in-out infinite alternate;
+}
+
+@keyframes fx-aurora {
+  from {
+    transform: translate3d(-4%, -2%, 0) rotate(0deg);
+  }
+  to {
+    transform: translate3d(4%, 3%, 0) rotate(8deg);
+  }
+}
+
+/* Name: letters rise out of a mask, one after another */
+.fx-split .fx-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.fx-split .fx-char {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.6em) rotate(6deg);
+  filter: blur(6px);
+  transition:
+    opacity 700ms var(--ease-out),
+    transform 900ms var(--ease-out),
+    filter 700ms var(--ease-out);
+  transition-delay: calc(var(--i) * 35ms + 200ms);
+}
+
+.fx-split.is-in .fx-char {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+/* One glow wave runs across the name once the letters land */
+.fx-split.is-wave .fx-char {
+  animation: fx-wave 900ms ease-in-out both;
+  animation-delay: calc(var(--i) * 40ms);
+}
+
+@keyframes fx-wave {
+  50% {
+    color: var(--accent-color);
+    text-shadow: 0 0 24px color-mix(in srgb, var(--accent-color), transparent 30%);
+  }
+}
+
+/* Scroll cue */
+.fx-scroll-cue {
+  position: absolute;
+  left: 50%;
+  bottom: 32px;
+  z-index: 3;
+  width: 26px;
+  height: 42px;
+  margin-left: -13px;
+  border: 2px solid color-mix(in srgb, var(--default-color), transparent 40%);
+  border-radius: 14px;
+  opacity: 0;
+  transition: opacity 600ms var(--ease-out) 1800ms;
+}
+
+.fx-ready .fx-scroll-cue {
+  opacity: 1;
+}
+
+.fx-scroll-cue::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  width: 4px;
+  height: 8px;
+  margin-left: -2px;
+  border-radius: 2px;
+  background: var(--default-color);
+  animation: fx-cue 1800ms var(--ease-in-out) infinite;
+}
+
+@keyframes fx-cue {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  70% {
+    transform: translateY(14px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 0;
+  }
+}
+
+/*--------------------------------------------------------------
+# Section titles: underline draws in when revealed
+--------------------------------------------------------------*/
+.section-title h2:after {
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  transition: transform 800ms var(--ease-out) 200ms;
+}
+
+.section-title.is-seen h2:after {
+  transform: scaleX(1);
+}
+
+/*--------------------------------------------------------------
+# Image reveal (About portrait, blog hero images)
+--------------------------------------------------------------*/
+.fx-reveal {
+  clip-path: inset(0 0 100% 0);
+  transition: clip-path 1000ms var(--ease-in-out);
+}
+
+.fx-reveal > img {
+  transform: scale(1.15);
+  transition: transform 1400ms var(--ease-out);
+}
+
+.fx-reveal.is-seen {
+  clip-path: inset(0 0 0 0);
+}
+
+.fx-reveal.is-seen > img {
+  transform: scale(1);
+}
+
+/*--------------------------------------------------------------
+# Skill bars: transform fill + one shine pass
+--------------------------------------------------------------*/
+.skills .progress-bar-wrap {
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.skills .progress-bar.fx-bar {
+  position: relative;
+  overflow: hidden;
+  border-radius: 5px;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  transition: transform 1400ms var(--ease-out);
+  transition-delay: calc(var(--i, 0) * 90ms);
+  background: linear-gradient(90deg, var(--accent-color), color-mix(in srgb, var(--accent-color), var(--fx-violet) 45%));
+}
+
+.skills .progress-bar.fx-bar.is-filled {
+  transform: scaleX(1);
+}
+
+.skills .progress-bar.fx-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.65), transparent);
+  transform: translateX(-100%);
+}
+
+.skills .progress-bar.fx-bar.is-filled::after {
+  animation: fx-bar-shine 1100ms var(--ease-in-out) forwards;
+  animation-delay: calc(var(--i, 0) * 90ms + 1100ms);
+}
+
+@keyframes fx-bar-shine {
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/*--------------------------------------------------------------
+# Stats: icon pops when its number finishes
+--------------------------------------------------------------*/
+.stats .stats-item i {
+  transition: transform 500ms var(--ease-out);
+}
+
+.stats .stats-item.is-counted i {
+  animation: fx-pop 600ms var(--ease-out);
+}
+
+@keyframes fx-pop {
+  0% {
+    transform: scale(1);
+  }
+  40% {
+    transform: scale(1.25) rotate(-8deg);
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
+
+/*--------------------------------------------------------------
+# Cards: spotlight that follows the pointer + 3D tilt
+--------------------------------------------------------------*/
+.fx-spot {
+  position: relative;
+  isolation: isolate;
+}
+
+.fx-spot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(320px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent-color), transparent 82%), transparent 65%);
+  transition: opacity 300ms ease;
+}
+
+.blog .entry.fx-spot::before {
+  z-index: 1;
+}
+
+.services .service-item.fx-spot {
+  padding: 18px;
+  margin-top: 6px;
+  border-radius: 12px;
+}
+
+.fx-tilt {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* JS drives the tilt transform; drop the template's hover lift so they don't fight */
+.blog .entry.fx-tilt,
+.blog .entry.fx-tilt:hover {
+  transform: none;
+  transition: box-shadow 300ms ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .fx-spot:hover::before {
+    opacity: 1;
+  }
+
+  .services .service-item .icon {
+    transition:
+      background-color 300ms ease,
+      transform 500ms var(--ease-out);
+  }
+
+  .services .service-item:hover .icon {
+    transform: rotate(-10deg) scale(1.08);
+  }
+
+  .header .navmenu a .navicon {
+    transition: transform 250ms var(--ease-out);
+  }
+
+  .header .navmenu a:hover .navicon {
+    transform: translateX(4px) scale(1.1);
+  }
+
+  .header .social-links a {
+    transition:
+      background-color 200ms ease,
+      transform 250ms var(--ease-out);
+  }
+
+  .header .social-links a:hover {
+    transform: translateY(-3px);
+  }
+
+  .header .profile-img img {
+    transition:
+      transform 600ms var(--ease-out),
+      box-shadow 600ms var(--ease-out);
+  }
+
+  .header .profile-img:hover img {
+    transform: scale(1.04) rotate(-2deg);
+    box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent-color), transparent 70%);
+  }
+}
+
+/*--------------------------------------------------------------
+# Buttons: magnetic pull (JS) + press feedback
+--------------------------------------------------------------*/
+/* JS owns transform (pull + press), so keep it out of any CSS transition.
+   !important beats the template's `transition: all` on these elements;
+   opacity/visibility/bottom keep main.css's .scroll-top show/hide transition. */
+.fx-magnet {
+  will-change: transform;
+  transition-property: background-color, color, opacity, visibility, bottom !important;
+}
+
+.contact .php-email-form button[type="submit"],
+.blog .entry .read-more-btn,
+.btn {
+  transition:
+    background-color 300ms ease,
+    transform 160ms var(--ease-out);
+}
+
+/* Press feedback where the magnet isn't running (touch, reduced motion) */
+.contact .php-email-form button[type="submit"]:not(.fx-magnet):active,
+.blog .entry .read-more-btn:not(.fx-magnet):active,
+.btn:not(.fx-magnet):active {
+  transform: scale(0.97);
+}
+
+/*--------------------------------------------------------------
+# Cursor glow (desktop only, FX.cursor in effects.js)
+--------------------------------------------------------------*/
+.fx-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  margin: -18px 0 0 -18px;
+  border-radius: 50%;
+  border: 1.5px solid color-mix(in srgb, var(--accent-color), transparent 30%);
+  background: color-mix(in srgb, var(--accent-color), transparent 90%);
+  pointer-events: none;
+  z-index: 10001;
+  opacity: 0;
+  transition:
+    opacity 300ms ease,
+    width 250ms var(--ease-out),
+    height 250ms var(--ease-out),
+    margin 250ms var(--ease-out);
+}
+
+.fx-cursor.is-visible {
+  opacity: 1;
+}
+
+.fx-cursor.is-hover {
+  width: 60px;
+  height: 60px;
+  margin: -30px 0 0 -30px;
+  background: color-mix(in srgb, var(--accent-color), transparent 82%);
+}
+
+/*--------------------------------------------------------------
+# Reduced motion: keep fades, drop movement
+--------------------------------------------------------------*/
+@media (prefers-reduced-motion: reduce) {
+  .fx-ready .hero > img,
+  .hero::after,
+  .fx-scroll-cue::before,
+  .stats .stats-item.is-counted i,
+  .skills .progress-bar.fx-bar.is-filled::after,
+  .fx-split.is-wave .fx-char,
+  .fx-loader-ring--outer,
+  .fx-loader-ring--inner,
+  .fx-loader-ring--dots,
+  .fx-loader-initials,
+  .fx-loader-core {
+    animation: none;
+  }
+
+  /* Fade out instead of the curtain split */
+  .fx-loader-panel {
+    transition: opacity 400ms ease;
+  }
+
+  .fx-loader.is-done .fx-loader-panel--top,
+  .fx-loader.is-done .fx-loader-panel--bottom {
+    transform: none;
+    opacity: 0;
+  }
+
+  .fx-split .fx-char {
+    transform: none;
+    filter: none;
+    transition: opacity 400ms ease;
+    transition-delay: 0ms;
+  }
+
+  .fx-reveal,
+  .fx-reveal.is-seen {
+    clip-path: none;
+  }
+
+  .fx-reveal > img {
+    transform: none;
+  }
+
+  .skills .progress-bar.fx-bar {
+    transition-duration: 1ms;
+  }
+
+  .section-title h2:after {
+    transform: none;
+  }
+}

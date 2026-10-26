@@ -1406,7 +1406,7 @@ section,
 .blog-details-area {
   padding: 60px 0;
   background-color: #f8f9fa; /* Match blog background */
-  font-family: "Open Sans", sans-serif;
+  font-family: var(--default-font);
 }
 
 .blog-details-area .entry {

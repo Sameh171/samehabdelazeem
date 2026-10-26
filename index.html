@@ -78,7 +78,6 @@
       href="assets/vendor/bootstrap/css/bootstrap.min.css"
       rel="stylesheet"
     />
-    <link href="assets/css/all.min.css" rel="stylesheet" />
     <link
       href="assets/vendor/bootstrap-icons/bootstrap-icons.css"
       rel="stylesheet"
@@ -92,6 +91,7 @@
 
     <!-- Main CSS File -->
     <link href="assets/css/main.css" rel="stylesheet" />
+    <link href="assets/css/effects.css" rel="stylesheet" />
 
     <!-- =======================================================
   * Template Name: Sameh Abd El Azeem
@@ -103,12 +103,34 @@
   </head>
 
   <body class="index-page">
+    <!-- Preloader -->
+    <div id="preloader" class="fx-loader" role="status" aria-busy="true" aria-label="Loading">
+      <div class="fx-loader-panel fx-loader-panel--top"></div>
+      <div class="fx-loader-panel fx-loader-panel--bottom"></div>
+      <div class="fx-loader-core">
+        <div class="fx-loader-mark">
+          <svg viewBox="0 0 120 120" aria-hidden="true">
+            <circle class="fx-loader-ring fx-loader-ring--track" cx="60" cy="60" r="56" />
+            <circle class="fx-loader-ring fx-loader-ring--outer" cx="60" cy="60" r="56" />
+            <circle class="fx-loader-ring fx-loader-ring--dots" cx="60" cy="60" r="51" />
+            <circle class="fx-loader-ring fx-loader-ring--inner" cx="60" cy="60" r="46" />
+          </svg>
+          <span class="fx-loader-initials">SA</span>
+        </div>
+        <div class="fx-loader-name">Sameh Abd El Azeem</div>
+        <div class="fx-loader-bar"><span></span></div>
+        <div class="fx-loader-pct"><span>0</span>%</div>
+      </div>
+    </div>
+
     <header id="header" class="header dark-background d-flex flex-column">
       <i class="header-toggle d-xl-none bi bi-list"></i>
 
       <div class="profile-img">
         <img
-          src="assets/img/hero-bg.jpg"
+          src="assets/img/hero-avatar.jpg"
+          width="240"
+          height="240"
           alt=""
           class="img-fluid rounded-circle"
         />
@@ -172,7 +194,7 @@
             >
           </li> -->
           <li>
-            <a href="#blog"><i class="fa-solid fa-blog navicon"></i> Blog</a>
+            <a href="#blog"><i class="bi bi-journal-text navicon"></i> Blog</a>
           </li>
           <li>
             <a href="#services"
@@ -191,7 +213,14 @@
     <main class="main">
       <!-- Hero Section -->
       <section id="hero" class="hero section dark-background">
-        <img src="assets/img/hero-bg.jpg" alt="" data-aos="fade-in" class="" />
+        <img
+          src="assets/img/hero-bg.jpg"
+          srcset="assets/img/hero-bg-800.jpg 800w, assets/img/hero-bg.jpg 1600w"
+          sizes="100vw"
+          fetchpriority="high"
+          alt=""
+          data-aos="fade-in"
+        />
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
           <h2>Sameh Abd El Azeem</h2>
@@ -233,6 +262,10 @@
             <div class="col-lg-4">
               <img
                 src="assets/img/hero-bg.jpg"
+                srcset="assets/img/hero-bg-800.jpg 800w, assets/img/hero-bg.jpg 1600w"
+                sizes="(min-width: 992px) 33vw, 100vw"
+                loading="lazy"
+                decoding="async"
                 class="img-fluid"
                 alt="Sameh A. Azema Portrait"
               />
@@ -406,7 +439,7 @@
         <!-- End Section Title -->
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
-          <div class="row skills-content skills-animation">
+          <div class="row skills-content">
             <div class="col-lg-6">
               <div class="progress">
                 <span class="skill"
@@ -641,6 +674,8 @@
                     src="assets/img/blogs/WhatsApp Image 2025-05-23 at 21.07.59_1658bf4d.jpg"
                     alt="AWS to Huawei Migration Lessons"
                     class="img-fluid"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div class="entry-content-wrapper d-flex flex-column">
@@ -663,8 +698,7 @@
                       href="blogs/digital-transformation.html"
                       class="read-more-btn"
                     >
-                      <span>Read More</span> <i class="fas fa-arrow-right"></i>
-                      <!-- Optional: Font Awesome icon -->
+                      <span>Read More</span> <i class="bi bi-arrow-right"></i>
                     </a>
                   </div>
                 </div>
@@ -680,6 +714,8 @@
                     src="assets/img/blogs/WhatsApp Image 2025-05-23 at 23.03.45_be4e8816.jpg"
                     alt="AI for Lawyers"
                     class="img-fluid"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <!-- Replaced base64 with a placeholder/actual URL -->
                 </div>
@@ -700,7 +736,7 @@
                   </div>
                   <div class="entry-footer mt-auto">
                     <a href="blogs/agentic-aI.html" class="read-more-btn">
-                      <span>Read More</span> <i class="fas fa-arrow-right"></i>
+                      <span>Read More</span> <i class="bi bi-arrow-right"></i>
                     </a>
                   </div>
                 </div>
@@ -716,6 +752,8 @@
                     src="assets/img/blogs/WhatsApp Image 2025-05-23 at 23.27.01_4379d2ab.jpg"
                     alt="Zero-Trust Security"
                     class="img-fluid"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <div class="entry-content-wrapper d-flex flex-column">
@@ -735,7 +773,7 @@
                   </div>
                   <div class="entry-footer mt-auto">
                     <a href="blogs/generative-aI.html" class="read-more-btn">
-                      <span>Read More</span> <i class="fas fa-arrow-right"></i>
+                      <span>Read More</span> <i class="bi bi-arrow-right"></i>
                     </a>
                   </div>
                 </div>
@@ -746,8 +784,6 @@
         </div>
       </section>
 
-      <!-- If you want to use Font Awesome icons, include this in your <head> or before </body> -->
-      <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> -->
       <!-- End Blog Section -->
 
       <!-- Services Section -->
@@ -892,7 +928,7 @@
               data-aos-delay="500"
             >
               <div class="icon flex-shrink-0">
-                <i class="fa-solid fa-code code"></i>
+                <i class="bi bi-code-slash"></i>
               </div>
               <div>
                 <h4 class="title">
@@ -966,6 +1002,8 @@
                   <img
                     src="assets/img/testimonials/testimonials-naglaa.jpg"
                     class="testimonial-img"
+                    loading="lazy"
+                    decoding="async"
                     alt="M.Mansour, IT Manager Mazloum"
                   />
                   <h3>M.Mansour</h3>
@@ -986,6 +1024,8 @@
                   <img
                     src="assets/img/testimonials/testimonials-abdelrahman.jpg"
                     class="testimonial-img"
+                    loading="lazy"
+                    decoding="async"
                     alt="Abdelrahman, CEO, ForteCloud"
                   />
                   <h3>Abdelrahman</h3>
@@ -1006,6 +1046,8 @@
                   <img
                     src="assets/img/testimonials/testimonials-mahmoud.jpg"
                     class="testimonial-img"
+                    loading="lazy"
+                    decoding="async"
                     alt="Mahmoud Sharaf, IT Manager, Muheel"
                   />
                   <h3>Mahmoud Sharaf</h3>
@@ -1265,14 +1307,11 @@
       ><i class="bi bi-arrow-up-short"></i
     ></a>
 
-    <!-- Preloader -->
-    <div id="preloader"></div>
 
     <!-- Vendor JS Files -->
     <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="assets/vendor/php-email-form/validate.js"></script>
     <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/js/all.min.js"></script>
     <script src="assets/vendor/typed.js/typed.umd.js"></script>
     <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
     <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
@@ -1393,5 +1432,6 @@ www.samehabdelazeem.com
 
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script src="assets/js/effects.js"></script>
   </body>
 </html>
