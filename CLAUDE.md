@@ -35,3 +35,7 @@ Then open http://localhost:8000/.
 ## Contact form
 
 `main.js` intercepts `#contact-form` submit and POSTs JSON (`to`, `subject`, `text`, `html`) to a Cloudflare Worker at `https://resend-worker.sameh-232.workers.dev/sendEmail` (Resend-backed), which emails a confirmation to the submitter. User input is HTML-escaped before going into the email HTML. Status is shown in `.form-status` (`data-state` = loading/success/error). There is no server-side form handler in this repo.
+
+## Cache busting
+
+Pages load `main.css` and `main.js` with a `?v=YYYY-MM-DD` query so browsers and CDNs don't serve a stale copy after a deploy. Bump the version on every page whenever either file changes.
